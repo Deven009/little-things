@@ -1,0 +1,151 @@
+:root{
+  --page:#f8f1e7; --ink:#4a2030; --faded:#8a6a62; --seal:#9c2733; --seal-hi:#bd3a47; --burn:#b07a3c;
+  --body:"IM Fell English","Georgia",serif; --hand:"Homemade Apple","Brush Script MT",cursive;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font-family:var(--body); color:var(--ink); font-size:1.2rem; line-height:1.65;
+  display:grid; place-items:center; padding:1rem; background:var(--page); overflow-x:hidden;
+}
+
+/* ---- the old burnt-edge sheet ---- */
+.paper{
+  position:relative; width:min(900px,100%); min-height:min(560px,88vh);
+  padding:3.4rem 3.8rem; display:grid; align-items:center; overflow:hidden;
+  background:
+    radial-gradient(ellipse at 50% 45%,#fffaf2 0%,#fbf3e6 55%,#f1e2c8 100%);
+  box-shadow:
+    inset 0 0 0 2px rgba(150,100,45,.35),
+    inset 0 0 22px 6px rgba(176,122,60,.55),
+    inset 0 0 90px 18px rgba(176,122,60,.28);
+  clip-path:polygon(0 1.4%,6% .6%,13% 1.6%,21% .4%,30% 1.2%,38% .3%,47% 1.5%,55% .5%,64% 1.3%,72% .2%,81% 1.1%,90% .4%,100% 1.2%,100% 100%,0 100%);
+  border-radius:0 0 14px 14px;
+}
+/* faint stains + a crease, like the reference */
+.paper::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(circle at 8% 18%,rgba(120,80,40,.16) 0 2px,transparent 3px),
+    radial-gradient(circle at 12% 14%,rgba(120,80,40,.12) 0 1.5px,transparent 3px),
+    radial-gradient(circle at 92% 12%,rgba(120,80,40,.14) 0 2px,transparent 3px),
+    radial-gradient(ellipse at 14% 55%,rgba(150,110,80,.10),transparent 40%),
+    linear-gradient(90deg,transparent 39.6%,rgba(120,90,60,.10) 40%,transparent 40.6%);
+}
+/* .hearts{position:absolute; right:3%; bottom:0; width:min(300px,34%); height:auto; pointer-events:none} */
+.hearts{position:absolute; right:3%; bottom:0; width:min(300px,34%); height:auto; pointer-events:none; --dur:1.5s; --big:1.16}
+.hearts.fast{--dur:.62s; --big:1.38}
+.hearts .heart{pointer-events:auto; cursor:pointer; transform-box:fill-box; transform-origin:center; animation:beat var(--dur) ease-in-out infinite}
+/* lub-dub */
+@keyframes beat{0%,100%{transform:scale(1)}14%{transform:scale(var(--big))}28%{transform:scale(1)}42%{transform:scale(calc(1 + (var(--big) - 1) * .7))}70%{transform:scale(1)}}
+
+.step{display:none; position:relative; z-index:1; max-width:34rem; text-align:left}
+.step.active{display:block; animation:unfold .9s ease both}
+@keyframes unfold{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.note{margin:0 0 .6rem; font-style:italic; font-size:1rem; color:var(--faded); letter-spacing:.04em}
+h1{font-weight:400; font-size:clamp(1.8rem,5vw,2.6rem); line-height:1.25; margin:0 0 1rem}
+.hand{font-family:var(--hand)}
+h1.hand{font-size:clamp(1.5rem,4.6vw,2.1rem); line-height:1.6}
+p{margin:.4rem 0 1rem}
+.big{font-size:1.7rem; font-style:italic}
+.rules{padding-left:1.2rem; margin:0 0 1.8rem}
+.rules li{margin:.3rem 0}
+.rules li::marker{content:"♥  "; color:var(--seal); font-size:.8em}
+.sign{margin-top:2rem; font-size:1rem; line-height:2; color:var(--faded)}
+
+[data-type].typing::after{content:"|"; margin-left:2px; animation:blink .7s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* wax seal start button */
+.seal{
+  display:block; margin:1.2rem 0 0; width:100px; height:100px; border:0; cursor:pointer;
+  font:1.05rem/1.15 var(--hand); color:#f8dcd2; text-shadow:0 -1px 0 rgba(0,0,0,.4);
+  background:radial-gradient(circle at 35% 30%,var(--seal-hi),var(--seal) 60%,#561119);
+  border-radius:48% 52% 50% 46% / 52% 46% 54% 48%;
+  box-shadow:0 5px 10px rgba(80,30,30,.35),inset 0 0 0 5px rgba(0,0,0,.1),inset 0 0 14px rgba(0,0,0,.4);
+  transition:transform .2s;
+}
+.seal:hover,.seal:focus-visible{transform:scale(1.07) rotate(-4deg)}
+.seal:active{transform:scale(.95)}
+
+.btn,.chip{
+  font:inherit; color:var(--ink); background:transparent; cursor:pointer;
+  border:2px solid var(--ink); padding:.55rem 1.6rem; border-radius:2px;
+  transition:background .2s,color .2s;
+}
+.btn:hover:not(:disabled),.chip:hover{background:var(--ink); color:#fbf3e6}
+.btn:disabled{opacity:.4; cursor:not-allowed}
+.btn.yes{background:var(--seal); border-color:var(--seal); color:#fbeae0; font-size:1.4rem; padding:.6rem 2.4rem}
+.btn.yes:hover{background:var(--seal-hi)}
+.answers{display:flex; gap:1.6rem; align-items:center; margin-top:2rem; min-height:4rem}
+.btn.no.run{position:absolute; z-index:20; transition:left .6s ease-in-out,top .6s ease-in-out,background .2s,color .2s}
+
+.field{display:block; margin:0 0 1.2rem}
+input[type=date],input[type=time]{
+  display:block; margin-top:.4rem; font:inherit; color:var(--ink); padding:.4rem .6rem;
+  background:rgba(255,250,240,.6); border:0; border-bottom:2px solid var(--ink); border-radius:0;
+}
+.times{display:flex; flex-wrap:wrap; gap:.5rem; margin:.5rem 0 .8rem}
+.chip{padding:.3rem 1rem; font-size:1rem}
+.chip.on{background:var(--ink); color:#fbf3e6}
+
+#mute{
+  position:fixed; top:14px; right:14px; z-index:30; width:42px; height:42px; border-radius:50%;
+  border:1px solid rgba(74,32,48,.35); background:rgba(255,250,240,.8); color:var(--ink);
+  font-size:1.2rem; cursor:pointer;
+}
+#mute.off{opacity:.45; text-decoration:line-through}
+:focus-visible{outline:3px solid var(--seal-hi); outline-offset:3px}
+
+/* phones: text on top, hearts tucked in the corner behind */
+@media (max-width:640px){
+  .paper{padding:2.6rem 1.6rem 6rem}
+  .hearts{width:46%; right:-2%; opacity:.85}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* typewriter body, handwriting headings */
+:root{
+  --body:"Special Elite","Courier Prime","Courier New",monospace;
+  --hand:"Homemade Apple","Brush Script MT",cursive;
+}
+body{font-size:1.05rem; line-height:1.75}
+h1,.big,.sign,.seal{font-family:var(--hand); font-style:normal}
+h1{font-size:clamp(1.4rem,4.4vw,2rem); line-height:1.6}
+.big{font-size:1.4rem; line-height:1.7}
+.sign{font-size:1rem}
+.seal{font-size:1.05rem}
+.btn,.chip{font-style:normal; font-size:1.05rem}
+.note,.sub{font-style:normal}
+
+/* round vintage buttons: Yes = wax seal, everything else = oval ink stamp */
+.btn,.chip{border-radius:50%; padding:.75rem 2rem; text-align:center; line-height:1.3; border:3px double var(--ink); box-shadow:none}
+.chip{border-radius:999px; padding:.3rem 1.1rem}
+.btn:hover:not(:disabled),.chip:hover{box-shadow:none; transform:rotate(-2deg)}
+.answers{gap:2.2rem; min-height:8rem}
+.btn.no{transform:rotate(-3deg)}
+.btn.yes{
+  width:112px; height:112px; padding:0; border:0; font:1.35rem/1 var(--hand); color:#f8dcd2;
+  border-radius:48% 52% 50% 46% / 52% 46% 54% 48%;
+  background:radial-gradient(circle at 35% 30%,var(--seal-hi),var(--seal) 60%,#561119);
+  box-shadow:0 6px 12px rgba(80,30,30,.38),inset 0 0 16px rgba(0,0,0,.4);
+  outline:2px solid rgba(255,225,215,.3); outline-offset:-11px;
+  text-shadow:0 -1px 0 rgba(0,0,0,.45); transform:rotate(-4deg);
+}
+.btn.yes:hover:not(:disabled){
+  background:radial-gradient(circle at 35% 30%,#d24a58,var(--seal-hi) 60%,#6a1720);
+  color:#fff3ea; transform:scale(1.08) rotate(-6deg); box-shadow:0 8px 14px rgba(80,30,30,.4),inset 0 0 16px rgba(0,0,0,.4);
+}
+
+/* activity picks + ride */
+.picks{display:grid; grid-template-columns:1fr 1fr; gap:.9rem 1rem; max-width:27rem; margin:1.2rem 0 1.6rem}
+.btn.pick{border-radius:999px; padding:.8rem .8rem}
+.btn.pick.on{background:var(--ink); color:#f7ebd3}
+.ride{display:flex; flex-wrap:wrap; gap:1.2rem; margin-top:1.6rem}
+@media (max-width:420px){.picks{grid-template-columns:1fr}}
+
+/* copy + instagram buttons */
+.send{display:flex; flex-wrap:wrap; gap:1rem; margin:1.4rem 0 .4rem}
+a.btn{display:inline-block; text-decoration:none}
+.btn[hidden]{display:none}

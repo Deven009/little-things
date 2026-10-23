@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A letter for K</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Homemade+Apple&family=Noto+Serif+Gujarati&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Homemade+Apple&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Homemade+Apple&family=Noto+Serif+Gujarati&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button id="mute" aria-label="Toggle music" title="Music on/off">♪</button>
+
+<main class="paper">
+
+  <!-- STEP 1: welcome + disclaimer -->
+  <section class="step active" data-step="1">
+    <h1 class="hand" data-type>Heyyy K,</h1>
+    <p class="hand">Before you open this letter, a few small things:</p>
+    <ul class="rules">
+      <li>Open this in privacy, just you and your screen!!</li>
+      <li>Headphones on, if they are nearby!!</li>
+      <li>Thank you for opening this!!</li>
+    </ul>
+    <button class="seal" id="start">Let's<br>open</button>
+  </section>
+
+  <!-- STEP 2: the question -->
+    <!-- STEP 2: the question -->
+  <section class="step" data-step="2">
+    <h1 data-type>Will you go on a date with me?</h1>
+    <p class="sub gu">શું તું મારી સાથે ડેટ પર આવીશ?</p>
+    <p class="sub">there is only one answer 🙂</p>
+    <div class="answers" id="answers">
+      <button class="btn yes" id="yes">Yes</button>
+      <button class="btn no" id="no">No</button>
+    </div>
+  </section>
+
+  <!-- STEP 3: celebration -->
+  <section class="step" data-step="3">
+    <h1 class="hand" data-type>Yayyy!</h1>
+    <p class="sub">You just made my day, Let me make yours now.</p>
+    <p class="sub">pick as many as you like 🙂.</p>
+    <div class="picks">
+      <button class="btn pick" data-pick="tennis">🎾 Tennis</button>
+      <button class="btn pick" data-pick="dessert hunting">🍰 Dessert hunting</button>
+      <button class="btn pick" data-pick="a sunset walk">🌇 Sunset walk</button>
+      <button class="btn pick" data-pick="coffee">☕ Coffee</button>
+    </div>
+    <button class="btn" id="activityNext" disabled>Next</button>
+  </section>
+
+  <!-- STEP 4: date + time -->
+  <section class="step" data-step="4">
+    <h1 data-type>Pick our day</h1>
+    <label class="field">Which day?
+      <input type="date" id="date">
+    </label>
+    <div class="field">What time?
+      <div class="times" id="times">
+        <button class="chip">Morning</button>
+        <button class="chip">Afternoon</button>
+        <button class="chip">Evening</button>
+        <button class="chip">Late night</button>
+      </div>
+      <input type="time" id="time" aria-label="Exact time (optional)">
+    </div>
+    <button class="btn" id="confirm" disabled>Confirm</button>
+  </section>
+
+  <!-- STEP 5: ride -->
+  <section class="step" data-step="5">
+    <h1 data-type>Do you need a ride as well?</h1>
+    <p class="sub">happy to pick you up 🙂</p>
+    <div class="ride">
+      <button class="btn" data-ride="yes">Yes, please 🚗</button>
+      <button class="btn" data-ride="no">I'll get there myself</button>
+    </div>
+  </section>
+
+  <!-- STEP 6: closing (copy still to come) -->
+  <section class="step" data-step="6">
+    <h1 class="hand" data-type>Something beautiful is starting...</h1>
+    <p class="big" id="summary"></p>
+    <p id="summary2"></p>
+    <div class="send">
+      <button class="btn" id="copyBtn">Copy our plan</button>
+      <a class="btn" id="igBtn" target="_blank" rel="noopener" hidden>Open Instagram</a>
+    </div>
+    <p class="sub">copy it, then paste it in our chat 🙂</p>
+    <p class="sign hand">— you know who</p>
+  </section>
+
+  <!-- decorative hearts, bottom right of the paper -->
+  <svg class="hearts" viewBox="0 0 300 380" aria-hidden="true">
+    <defs><path id="h" d="M12 21C-7 9 4-3 12 5c8-8 19 4 0 16z"/></defs>
+    <g fill="none" stroke="#b0303a" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="0.1 8">
+      <path d="M40 380C60 320 20 280 36 190"/>
+      <path d="M120 380C100 320 150 270 138 150"/>
+      <path d="M205 380C185 300 225 240 212 80"/>
+      <path d="M285 380C275 330 290 290 280 220"/>
+    </g>
+       <g fill="#b0303a">
+      <g transform="translate(22 152) scale(1.9)"><use class="heart" href="#h" style="animation-delay:-0.00s"/></g>
+      <g transform="translate(115 105) scale(1.9)"><use class="heart" href="#h" style="animation-delay:-0.23s"/></g>
+      <g transform="translate(190 38) scale(2)"><use class="heart" href="#h" style="animation-delay:-0.46s"/></g>
+      <g transform="translate(262 175) scale(1.9)"><use class="heart" href="#h" style="animation-delay:-0.69s"/></g>
+      <g transform="translate(95 300) scale(1.5)"><use class="heart" href="#h" style="animation-delay:-0.92s"/></g>
+      <g transform="translate(150 215) scale(.8)"><use class="heart" href="#h" style="animation-delay:-1.15s"/></g>
+      <g transform="translate(222 140) scale(.8)"><use class="heart" href="#h" style="animation-delay:-1.38s"/></g>
+      <g transform="translate(60 245) scale(.8)"><use class="heart" href="#h" style="animation-delay:-1.61s"/></g>
+      <g transform="translate(250 255) scale(.7)"><use class="heart" href="#h" style="animation-delay:-1.84s"/></g>
+    </g>
+  </svg>
+
+</main>
+<script src="script.js"></script>
+</body>
+</html>
